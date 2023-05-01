@@ -1,4 +1,4 @@
-package com.musicmate;
+package com.musicmate.song;
 
 import jakarta.persistence.*;
 
@@ -15,29 +15,26 @@ public class Song {
             strategy = GenerationType.SEQUENCE,
             generator = "song_id_sequence"
     )
-    private Integer id;
+    private Long id;
     private String title;
     private String album;
     private Integer release_date;
     private String artist;
 
-    public Song(Integer id, String title, String album, Integer release_date, String artist) {
-        this.id = id;
+    protected Song() { }
+
+    public Song(String title, String album, Integer release_date, String artist) {
         this.title = title;
         this.album = album;
         this.release_date = release_date;
         this.artist = artist;
     }
 
-    public Song() {
-
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -78,11 +75,19 @@ public class Song {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return Objects.equals(title, song.title) && Objects.equals(album, song.album) && Objects.equals(release_date, song.release_date) && Objects.equals(artist, song.artist);
+        return Objects.equals(id, song.id) && Objects.equals(title, song.title) && Objects.equals(album, song.album) && Objects.equals(release_date, song.release_date) && Objects.equals(artist, song.artist);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, album, release_date, artist);
+        return Objects.hash(id, title, album, release_date, artist);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Song[id='%d', title='%s', artist='%s', album='%s', release_date='%d']",
+                id, title, artist, album, release_date
+        );
     }
 }
