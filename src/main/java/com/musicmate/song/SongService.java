@@ -16,7 +16,7 @@ public class SongService {
     List<Song> findSongs() {
         List<Song> songs = new ArrayList<>();
 
-        for(Song song : repository.findAll()) {
+        for (Song song : repository.findAll()) {
             songs.add(song);
         }
 

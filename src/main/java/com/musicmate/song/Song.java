@@ -7,21 +7,16 @@ import java.util.Objects;
 @Entity
 public class Song {
     @Id
-    @SequenceGenerator(
-            name = "song_id_sequence",
-            sequenceName = "song_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "song_id_sequence"
-    )
+    @SequenceGenerator(name = "song_id_sequence", sequenceName = "song_id_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "song_id_sequence")
     private Long id;
     private String title;
     private String album;
     private Integer release_date;
     private String artist;
 
-    protected Song() { }
+    protected Song() {
+    }
 
     public Song(String title, String album, Integer release_date, String artist) {
         this.title = title;
@@ -72,10 +67,13 @@ public class Song {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Song song = (Song) o;
-        return Objects.equals(id, song.id) && Objects.equals(title, song.title) && Objects.equals(album, song.album) && Objects.equals(release_date, song.release_date) && Objects.equals(artist, song.artist);
+        return Objects.equals(id, song.id) && Objects.equals(title, song.title) && Objects.equals(album, song.album)
+                && Objects.equals(release_date, song.release_date) && Objects.equals(artist, song.artist);
     }
 
     @Override
@@ -87,7 +85,6 @@ public class Song {
     public String toString() {
         return String.format(
                 "Song[id='%d', title='%s', artist='%s', album='%s', release_date='%d']",
-                id, title, artist, album, release_date
-        );
+                id, title, artist, album, release_date);
     }
 }
