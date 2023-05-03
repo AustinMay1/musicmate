@@ -21,16 +21,16 @@ public class MusicmateApplication {
     @Bean
     public CommandLineRunner songs(SongRepository repo, S3Service s3) {
         return (args) -> {
-            s3test(s3);
-
             songtest(repo);
         };
     }
 
     private static void songtest(SongRepository repo) {
-        repo.save(new Song("Savior", "Appeal To Reason", 2008, "Rise Against"));
-        repo.save(new Song("God's Plan", "Scorpion", 2018, "Drake"));
-        repo.save(new Song("Superman", "The Eminem Show", 2002, "Eminem"));
+        repo.save(new Song("Savior", "Appeal To Reason", 2008, "Rise Against", "xxxxxx"));
+        repo.save(new Song("God's Plan", "Scorpion", 2018, "Drake", "xxxxxx2"));
+        repo.save(new Song("Superman", "The Eminem Show", 2002, "Eminem", "xxxxxx3"));
+        repo.save(new Song("Study", "FASSounds", 2023, "FASSounds", "xxxxxx4"));
+        repo.save(new Song("Walk", "Sup33r", 2023, "Sup33r", "xxxxxx5"));
 
         log.info("Songs found:");
         log.info("------------");
