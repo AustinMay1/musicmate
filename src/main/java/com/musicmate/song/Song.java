@@ -91,7 +91,7 @@ public class Song {
     @Override
     public String toString() {
         return String.format(
-                "Song[id='%d', title='%s', artist='%s', album='%s', release_date='%d', fileid='%s']",
-                id, title, artist, album, release_date, fileId);
+                "Song[id: '%d', title: '%s', artist: '%s', album: '%s', release_date: '%d']",
+                id, title, artist, album, release_date);
     }
 }

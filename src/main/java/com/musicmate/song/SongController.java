@@ -36,7 +36,13 @@ public class SongController {
     }
 
     @GetMapping(path = "{songId}/play")
+    @CrossOrigin(origins = "http://localhost:5173")
     public byte[] playSongFile(@PathVariable Integer songId) {
         return songService.downloadSong(songId);
+    }
+
+    @GetMapping(path = {"{songId}/details"})
+    public Song findSongById(@PathVariable Integer songId) {
+        return songService.findById(songId);
     }
 }

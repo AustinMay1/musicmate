@@ -1,8 +1,10 @@
 package com.musicmate;
 
+import com.musicmate.playlist.Playlist;
 import com.musicmate.s3.S3Service;
 import com.musicmate.song.Song;
 import com.musicmate.song.SongRepository;
+import com.musicmate.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -39,7 +41,6 @@ public class MusicmateApplication {
             log.info(song.toString());
         }
     }
-
     private static void s3test(S3Service s3) {
         s3.uploadObject("musicmate-songs", "foo", "hello world".getBytes());
 

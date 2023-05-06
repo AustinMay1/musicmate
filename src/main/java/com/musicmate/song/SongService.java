@@ -29,6 +29,10 @@ public class SongService {
         return songs;
     }
 
+    Song findById(Integer id) {
+        return repository.findById(id);
+    }
+
     List<Song> findByTitle(String title) {
         return repository.findByTitle(title);
     }
@@ -50,10 +54,7 @@ public class SongService {
     public byte[] downloadSong(Integer songId) {
         var song = repository.findById(songId);
 
-        byte[] audioFile = S3.downloadObject("musicmate-songs",
+        return S3.downloadObject("musicmate-songs",
                 "song-%d/%s".formatted(songId, song.getFileId()));
-
-        return audioFile;
     }
-
 }
