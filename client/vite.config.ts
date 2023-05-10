@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       "/api/songs": {
         target: "http://localhost:8080",
-        changeOrigin: true,
+        changeOrigin: false,
       }
     }
   }

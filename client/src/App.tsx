@@ -1,12 +1,12 @@
-import './App.css'
-import MusicPlayer from "../components/MusicPlayer.tsx";
+import Header from "./components/header/Header.tsx";
+import Explorer from "./components/explorer/Explorer.tsx";
 
 function App() {
 
   return (
     <>
-      <h1>Music Mate</h1>
-        <MusicPlayer />
+        <Header />
+        <Explorer />
     </>
   )
 }

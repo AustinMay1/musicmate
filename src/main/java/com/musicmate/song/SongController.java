@@ -1,6 +1,7 @@
 package com.musicmate.song;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +37,7 @@ public class SongController {
     }
 
     @GetMapping(path = "{songId}/play")
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "*")
     public byte[] playSongFile(@PathVariable Integer songId) {
         return songService.downloadSong(songId);
     }
@@ -44,5 +45,12 @@ public class SongController {
     @GetMapping(path = {"{songId}/details"})
     public Song findSongById(@PathVariable Integer songId) {
         return songService.findById(songId);
+    }
+
+    @PostMapping(path = "/add-song")
+    public ResponseEntity<?> addSong(@RequestBody SongUploadRequest newSong) {
+        songService.addSong(newSong);
+
+        return ResponseEntity.ok().build();
     }
 }

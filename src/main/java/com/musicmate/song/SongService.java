@@ -1,6 +1,7 @@
 package com.musicmate.song;
 
 import com.musicmate.s3.S3Service;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,10 +14,12 @@ import java.util.UUID;
 public class SongService {
     private final SongRepository repository;
     private final S3Service S3;
+    private final SongDAO SONGDAO;
 
-    public SongService(SongRepository repository, S3Service S3) {
+    public SongService(SongRepository repository, S3Service S3, @Qualifier("jpa") SongDAO SONGDAO) {
         this.repository = repository;
         this.S3 = S3;
+        this.SONGDAO = SONGDAO;
     }
 
     List<Song> findSongs() {
@@ -56,5 +59,18 @@ public class SongService {
 
         return S3.downloadObject("musicmate-songs",
                 "song-%d/%s".formatted(songId, song.getFileId()));
+    }
+
+    public void addSong(SongUploadRequest songUploadRequest) {
+        // @TODO: Check if song already exists by id? title? combination?
+
+        Song song = new Song(
+                songUploadRequest.title(),
+                songUploadRequest.album(),
+                songUploadRequest.release_date(),
+                songUploadRequest.artist()
+        );
+
+        SONGDAO.insertSong(song);
     }
 }

@@ -1,0 +1,16 @@
+.songcard {
+    display: flex;
+    width: 320px;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #EEEEEE;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+p {
+    margin: 0;
+}

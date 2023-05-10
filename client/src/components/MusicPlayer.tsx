@@ -1,21 +1,16 @@
 import { useState, useEffect } from "react";
+import {SongDetails} from "../interfaces/Interface.ts";
 
-interface SongDetails {
-    id: number;
-    title: string;
-    artist: string;
-    album: string;
-    release_date: number;
-    fileId: string;
-}
+import './MusicPlayer.css';
 
-function MusicPlayer() {
+// @ts-ignore
+function MusicPlayer({ songId }) {
     const [song, setSong] = useState<string>();
     const [songDetails, setSongDetails] = useState<SongDetails>();
 
     useEffect(() => {
         async function getSong() {
-            const file = await fetch("/api/songs/4/play", {
+            const file = await fetch(`/api/songs/${songId}/play`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 }
@@ -24,18 +19,18 @@ function MusicPlayer() {
             setSong(URL.createObjectURL(file));
         }
         getSong();
-    }, []);
+    }, [songId]);
 
     useEffect(() => {
         async function songDetails() {
-            const details = await fetch("/api/songs/4/details").then((res) => res.json())
+            const details = await fetch(`/api/songs/${songId}/details`).then((res) => res.json())
 
             console.log(details)
             setSongDetails(details)
         }
 
         songDetails();
-    }, [])
+    }, [songId])
 
     return (
         <div>

@@ -27,6 +27,13 @@ public class Song {
         this.fileId = fileId;
     }
 
+    public Song(String title, String album, Integer release_date, String artist) {
+        this.title = title;
+        this.album = album;
+        this.release_date = release_date;
+        this.artist = artist;
+    }
+
     public Long getId() {
         return id;
     }

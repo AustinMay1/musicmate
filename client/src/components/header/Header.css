@@ -1,0 +1,28 @@
+.header {
+    position: static;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+button {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: darkslategrey;
+}
+
+button:hover {
+    background-color: dimgray;
+    cursor: pointer;
+}
